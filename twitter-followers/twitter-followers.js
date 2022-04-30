@@ -221,12 +221,12 @@ async function upsertFollowersDB(followers) {
 
 (async () => {
   try {
-    const followers = await getFollowers();
-    fs.writeFileSync(
-      `./followers-${new Date().getTime()}.json`,
-      JSON.stringify(followers)
-    );
-    // const followers = require("./followers.json");
+    // const followers = await getFollowers();
+    // fs.writeFileSync(
+    //   `./followers-${new Date().getTime()}.json`,
+    //   JSON.stringify(followers)
+    // );
+    const followers = require("./followers.json");
     await upsertFollowersDB(followers);
   } catch (e) {
     console.log(e);
