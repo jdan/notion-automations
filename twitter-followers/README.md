@@ -2,6 +2,8 @@
 
 Sync your Twitter followers to Notion
 
+![image](https://user-images.githubusercontent.com/287268/166120349-e912c19b-638c-4dea-a46d-d7258ce15609.png)
+
 ### setup
 
 Create a `.env` file in this directory with the following:
