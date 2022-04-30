@@ -12,12 +12,14 @@ NOTION_API_KEY=
 NOTION_DATABASE_ID=
 ```
 
-1. [Make a new Twitter app](https://developer.twitter.com/en/portal/projects-and-apps)
+### setup twitter
+
+1. [Create a new Twitter app](https://developer.twitter.com/en/portal/apps/new)
 2. Save the bearer token in your newly-created `.env` file
-3. Create a new [Notion integration](https://www.notion.so/my-integrations)
 
-#### Create a Notion integration [details instructions](https://developers.notion.com/docs/getting-started)
+### setup notion
 
+3. Create a Notion integration [detailed instructions](https://developers.notion.com/docs/getting-started)
 4. Save the newly-created integration token as `NOTION_API_KEY`
 5. Create a Notion database with the following schema (TODO: create a small cli to bootstrap this)
 
