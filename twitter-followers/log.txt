@@ -1,0 +1,89 @@
+Loaded 200 followers
+Loaded 400 followers
+Loaded 600 followers
+Loaded 800 followers
+Loaded 1000 followers
+Loaded 1200 followers
+Loaded 1400 followers
+Loaded 1600 followers
+Loaded 1800 followers
+Loaded 2000 followers
+Loaded 2200 followers
+Loaded 2400 followers
+Loaded 2600 followers
+Loaded 2800 followers
+Loaded 3000 followers
+Loaded 3200 followers
+Loaded 3400 followers
+Loaded 3600 followers
+Loaded 3800 followers
+Loaded 4000 followers
+Loaded 4200 followers
+Loaded 4400 followers
+Loaded 4600 followers
+Loaded 4800 followers
+Loaded 5000 followers
+Loaded 5200 followers
+Loaded 5400 followers
+Loaded 5600 followers
+Loaded 5800 followers
+Loaded 6000 followers
+[ { message: 'Rate limit exceeded', code: 88 } ]
+Sleeping for 5 min...
+[ { message: 'Rate limit exceeded', code: 88 } ]
+Sleeping for 5 min...
+[ { message: 'Rate limit exceeded', code: 88 } ]
+Sleeping for 5 min...
+Loaded 6200 followers
+Loaded 6400 followers
+Loaded 6600 followers
+Loaded 6800 followers
+Loaded 7000 followers
+Loaded 7200 followers
+Loaded 7400 followers
+Loaded 7600 followers
+Loaded 7800 followers
+Loaded 8000 followers
+Loaded 8200 followers
+Loaded 8400 followers
+Loaded 8600 followers
+Loaded 8800 followers
+Loaded 9000 followers
+Loaded 9200 followers
+Loaded 9400 followers
+Loaded 9600 followers
+Loaded 9800 followers
+Loaded 10000 followers
+Loaded 10200 followers
+Loaded 10400 followers
+Loaded 10600 followers
+Loaded 10800 followers
+Loaded 11000 followers
+Loaded 11200 followers
+Loaded 11400 followers
+Loaded 11600 followers
+Loaded 11800 followers
+Loaded 12000 followers
+[ { message: 'Rate limit exceeded', code: 88 } ]
+Sleeping for 5 min...
+[ { message: 'Rate limit exceeded', code: 88 } ]
+Sleeping for 5 min...
+[ { message: 'Rate limit exceeded', code: 88 } ]
+Sleeping for 5 min...
+Loaded 12200 followers
+Loaded 12400 followers
+Loaded 12600 followers
+Loaded 12800 followers
+Loaded 13000 followers
+Loaded 13200 followers
+Loaded 13400 followers
+Loaded 13600 followers
+Loaded 13800 followers
+Loaded 14000 followers
+Loaded 14055 followers
+TypeError: Object.fromEntries is not a function
+    at pick (/home/jdan/notion-automations/node_modules/@notionhq/client/build/src/helpers.js:17:19)
+    at Object.query (/home/jdan/notion-automations/node_modules/@notionhq/client/build/src/Client.js:134:47)
+    at upsertFollowersDB (/home/jdan/notion-automations/twitter-followers/twitter-followers.js:143:61)
+    at /home/jdan/notion-automations/twitter-followers/twitter-followers.js:230:11
+    at process._tickCallback (internal/process/next_tick.js:68:7)

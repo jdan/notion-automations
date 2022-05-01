@@ -223,10 +223,10 @@ async function upsertFollowersDB(followers) {
   try {
     const followers = await getFollowers();
     fs.writeFileSync(
-      `./followers-${new Date().getTime()}.json`,
+      `${__dirname}/followers-${new Date().getTime()}.json`,
       JSON.stringify(followers)
     );
-    // const followers = require("../followers.json");
+    // const followers = require("./followers-1651397425723.json");
     await upsertFollowersDB(followers);
   } catch (e) {
     console.log(e);
