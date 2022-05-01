@@ -1,3 +1,4 @@
 .env
 node_modules/
 followers*.json
+log.txt
