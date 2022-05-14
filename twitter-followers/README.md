@@ -32,10 +32,9 @@ NOTION_DATABASE_ID=
 
 - Name (title)
 - Display name (text)
+- URL (url)
 - Bio (text)
 - Location (text)
-- Followers (number)
-- Following (number)
 - ID (text)
 
 6. Share the database with your new integration

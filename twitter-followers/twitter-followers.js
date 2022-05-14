@@ -85,12 +85,6 @@ function twitterFollowerToNotionSchema(follower) {
     Location: {
       rich_text: stringToRichText(follower.location),
     },
-    Following: {
-      number: follower.friends_count,
-    },
-    Followers: {
-      number: follower.followers_count,
-    },
     URL: {
       url: `https://twitter.com/${follower.screen_name}`
     }
@@ -139,9 +133,6 @@ function notionPropertiesToUpdate(notionRecord, follower) {
     ...getUpdate("Bio"),
     ...getUpdate("Location"),
     ...getUpdate("URL"),
-    // Let's pause updating following/followers for now
-    // ...getUpdate("Following"),
-    // ...getUpdate("Followers"),
   };
 }
 
