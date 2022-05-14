@@ -145,9 +145,14 @@ function notionPropertiesToUpdate(notionRecord, follower) {
   };
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 async function upsertFollowersDB(followers) {
   let cursor = undefined;
-  const followersByTwitterId = {};
+  const notionFollowersByTwitterId = {};
+  const twitterFollowersByTwitterId = {}
 
   do {
     const { results, next_cursor } = await notion.databases.query({
@@ -158,13 +163,13 @@ async function upsertFollowersDB(followers) {
 
     results.forEach(({ id, properties }) => {
       const twitterId = richTextToString(properties["ID"].rich_text);
-      followersByTwitterId[twitterId] = { ...properties, page_id: id };
+      notionFollowersByTwitterId[twitterId] = { ...properties, page_id: id };
     });
 
     cursor = next_cursor;
 
     console.log(
-      `Loaded ${Object.keys(followersByTwitterId).length} existing followers...`
+      `Loaded ${Object.keys(notionFollowersByTwitterId).length} existing followers...`
     );
   } while (cursor !== null);
 
@@ -172,13 +177,15 @@ async function upsertFollowersDB(followers) {
 
   const toCreate = [];
   const toUpdate = [];
-  // const toDelete = [];
+  const toDelete = [];
 
   followers.forEach((follower) => {
-    if (!followersByTwitterId[follower.id_str]) {
+    twitterFollowersByTwitterId[follower.id_str] = follower
+
+    if (!notionFollowersByTwitterId[follower.id_str]) {
       toCreate.push(follower);
     } else {
-      const notionFollower = followersByTwitterId[follower.id_str];
+      const notionFollower = notionFollowersByTwitterId[follower.id_str];
       const propertiesToUpdate = notionPropertiesToUpdate(
         notionFollower,
         follower
@@ -192,6 +199,13 @@ async function upsertFollowersDB(followers) {
       }
     }
   });
+
+  // Find page_id's which correspond to followers NOT present in twitterFollowersByTwitterId
+  Object.keys(notionFollowersByTwitterId).forEach(id => {
+    if (!twitterFollowersByTwitterId[id]) {
+      toDelete.push(notionFollowersByTwitterId[id].page_id)
+    }
+  })
 
   // Create
   console.log(`Creating ${toCreate.length} new entries...`);
@@ -207,7 +221,8 @@ async function upsertFollowersDB(followers) {
         });
         break;
       } catch (e) {
-        console.log("Errored out, retrying...");
+        console.log("Errored out creating, retrying...");
+        await sleep(1000)
       }
     }
   }
@@ -223,7 +238,25 @@ async function upsertFollowersDB(followers) {
         });
         break;
       } catch (e) {
-        console.log("Errored out, retrying...");
+        console.log("Errored out updating, retrying...");
+        await sleep(1000)
+      }
+    }
+  }
+
+  // Delete
+  console.log(`Deleting ${toDelete.length} entries...`);
+  for (const page_id of toDelete) {
+    while (true) {
+      try {
+        await notion.pages.update({
+          page_id,
+          archived: true
+        });
+        break;
+      } catch (e) {
+        console.log("Errored out deleting, retrying...");
+        await sleep(1000)
       }
     }
   }
