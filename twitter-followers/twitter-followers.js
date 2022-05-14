@@ -91,6 +91,9 @@ function twitterFollowerToNotionSchema(follower) {
     Followers: {
       number: follower.followers_count,
     },
+    URL: {
+      url: `https://twitter.com/${follower.screen_name}`
+    }
   };
 }
 
@@ -121,6 +124,11 @@ function notionPropertiesToUpdate(notionRecord, follower) {
         followerAsNotionSchema[fieldName].number
         ? { [fieldName]: followerAsNotionSchema[fieldName] }
         : null;
+    }  else if (notionRecord[fieldName].type === "url") {
+      return notionRecord[fieldName].url !==
+        followerAsNotionSchema[fieldName].url
+        ? { [fieldName]: followerAsNotionSchema[fieldName] }
+        : null;
     }
   }
 
@@ -130,8 +138,10 @@ function notionPropertiesToUpdate(notionRecord, follower) {
     ...getUpdate("Display name"),
     ...getUpdate("Bio"),
     ...getUpdate("Location"),
-    ...getUpdate("Following"),
-    ...getUpdate("Followers"),
+    ...getUpdate("URL"),
+    // Let's pause updating following/followers for now
+    // ...getUpdate("Following"),
+    // ...getUpdate("Followers"),
   };
 }
 
